@@ -66,12 +66,15 @@ namespace ModalsWithRouting
 
 
             // Endpoints
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints => // Route to the index.html if 404 Error and for SPA it always routes to index because SPA is single page APP.  // The url routing is done on CLient side 
             {
-                app.UseEndpoints(endpoints =>    // Route to the index.html if 404 Error and for SPA it always routes to index because SPA is single page APP.  // The url routing is done on CLient side 
-                {
-                    endpoints.MapFallbackToFile("/index.html");
-                });
+                endpoints.MapFallbackToFile("/index.html");
+
+                //endpoints.MapGet("/hello/{name:alpha}", async context =>
+                //{
+                //    var name = context.Request.RouteValues["name"];
+                //    await context.Response.WriteAsync($"Hello {name}!");
+                //});
             });
         }
     }
