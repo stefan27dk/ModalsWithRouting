@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+<!---Modal - Open - Button--->
+<button id="modalButton">Open Modal</button>
+<button id="modalButton2">Open Modal2</button>
+
+<!---Modal--->
+<div id="modal" class="modal-back">
+<div class="modal-content"> 
+<iframe class="modal-iframe noselect" src="/firstModal.html"></iframe>
+</div>
+</div>
+
+<!---Modal- 2-->
+<div id="modal2" class="modal-back">
+  <div class="modal-content"> 
+  <iframe class="modal-iframe noselect" src="/secondModal.html"></iframe>
+  </div>
+  </div>
+
+<br/>TOP
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>MIDDLE
+<br/> 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>BOTTOM
+<script type="module" src="/js/index.js"></script>
+ </body>
+
+
+
+ <!---Modal - Show - Hide--->
+ <script>
+   var globalVar = "Using - Global - variable!";
+     // Event Listeners
+    document.getElementById('modalButton').onclick = () => {showModal("modal")}; // On Pressing the modal - button open/show the modal 
+    document.getElementById('modalButton2').onclick = () => {showModal("modal2")}; // On Pressing the modal - button open/show the modal 
+    
+    // Modal - Hide/Close
+    document.getElementById("modal").onmousedown = (e)=> {if(e.target === e.currentTarget) document.body.style.cssText ="overflow: auto;", e.currentTarget.style.display = "none";}; // On Mouse down if the background is clicked and not the content than hide
+    document.getElementById("modal2").onmousedown = (e)=> {if(e.target === e.currentTarget) document.body.style.cssText ="overflow: auto;", e.currentTarget.style.display = "none";}; // On Mouse down if the background is clicked and not the content than hide
+
+     
+// Modal - Show/Open - Func
+ showModal = (modalId) =>
+ {
+   document.body.style.cssText ="overflow: hidden;"; // Disable scroll in body when modal is opened
+   let modal = document.getElementById(modalId);
+   modal.style.display = "block";
+   modal.getElementsByTagName('iframe')[0].focus(); // Focus the Modal Content "Ex: when you press CTRL+A you will select only within the iframe and not the body outside the iframe"
+ }
+</script>
+
+
+</html>
