@@ -42,6 +42,17 @@ namespace ModalsWithRouting
                 app.UseDeveloperExceptionPage();
             }
 
+            // If 404 Not found - show home
+            app.Use(async (context, next) =>
+            {
+                await next();
+                if (context.Response.StatusCode == 404)
+                {
+                    context.Request.Path = "/";
+                    await next();
+                }
+            });
+
 
             // SPA
             app.UseDefaultFiles(); // Means search for the index.html or default files in wwwroot - 
