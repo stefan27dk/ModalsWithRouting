@@ -48,9 +48,23 @@ namespace ModalsWithRouting
                 await next();
                 if (context.Response.StatusCode == 404)
                 {
-                    context.Request.Path = "/";
-                    await next();
+                    context.Response.Redirect("/");
+                    return;   // short circuit
                 }
+            });
+
+
+            // If 404 Not found - show home
+            app.Use(async (context, next) =>
+            {
+                var url = context.Request.Path.Value;
+                // Rewrite to index
+                if (url.Contains("/home/privacy"))
+                {
+                    // rewrite and continue processing
+                    context.Request.Path = "/htmlViews/firstModal.html";
+                }
+                await next();
             });
 
 
@@ -70,12 +84,16 @@ namespace ModalsWithRouting
             {
                 endpoints.MapFallbackToFile("/index.html");
 
-                //endpoints.MapGet("/hello/{name:alpha}", async context =>
+                //endpoints.MapGet("/htmlViews/{name:*}", async context =>
                 //{
                 //    var name = context.Request.RouteValues["name"];
                 //    await context.Response.WriteAsync($"Hello {name}!");
                 //});
             });
+
+
+           
+
         }
     }
 }
