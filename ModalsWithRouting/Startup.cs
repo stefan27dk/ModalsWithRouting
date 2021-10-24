@@ -54,7 +54,7 @@ namespace ModalsWithRouting
             });
 
 
-            // If 404 Not found - show home
+            // If Specific path load content from another path
             app.Use(async (context, next) =>
             {
                 var url = context.Request.Path.Value;
